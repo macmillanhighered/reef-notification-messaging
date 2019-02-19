@@ -1,0 +1,133 @@
+buildscript {
+    ext {
+        nexusUser = System.getenv('nexus_user') != null ? System.getenv('nexus_user') : "${nexus_user}"
+        nexusPassword = System.getenv('nexus_password') != null ? System.getenv('nexus_password') : "${nexus_password}"
+        nexusContextUrl = System.getenv('nexus_contextUrl') != null ? System.getenv('nexus_contextUrl') : "${nexus_contextUrl}"
+    }
+    repositories {
+        mavenCentral()
+
+        // Required for plugin: com.github.hierynomus.license
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+
+        // Note: defining cloud-nexus-release repository causes an exception at Gradle build time where maven metadata cannot 
+        // be found because Nexus RELEASE policy does not allow metadata in path
+
+        maven {
+            name = "cloud-nexus-snapshot"
+            url "${nexusContextUrl}/cloud-lib-snapshot"
+            credentials {
+                username = nexusUser
+                password = nexusPassword
+            }
+        }
+    }
+}
+
+plugins {
+    id "com.github.hierynomus.license" version "0.14.0"
+}
+
+apply plugin: 'java-library'
+apply plugin: 'findbugs'
+apply plugin: 'maven'
+
+group 'com.reef'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+def buildTimestamp = new Date().format("yyyy-MM-dd-HHmm")
+
+repositories {
+    mavenCentral()
+
+    // Note: defining cloud-nexus-release repository causes an exception at Gradle build time where maven metadata cannot 
+    // be found because Nexus RELEASE policy does not allow metadata in path
+
+    add buildscript.repositories.getByName("cloud-nexus-snapshot")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}
+
+dependencies {
+    compile "com.reef:reef-mongo-db-spring:5.3.0-SNAPSHOT"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+    }
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier 'sources'
+}
+
+findbugs {
+    ignoreFailures = true
+    toolVersion = "3.0.1"
+    showProgress = true
+    sourceSets = [sourceSets.main]
+    reportsDir = file("$project.buildDir/reports/findbugs")
+    effort = "max"
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = true
+        html.enabled = false
+    }
+}
+
+license {
+    strictCheck true
+    ignoreFailures true
+    excludes(["templates/*.html", "resources/*.*"])
+    ext.copyrightYear = Calendar.getInstance().get(Calendar.YEAR)
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "${nexusContextUrl}/cloud-lib-release/") {
+                authentication(userName: nexusUser, password: nexusPassword)
+                pom.groupId = project.group
+                pom.artifactId = project.name
+                pom.version = version
+            }
+            snapshotRepository(url: "${nexusContextUrl}/cloud-lib-snapshot/") {
+                authentication(userName: nexusUser, password: nexusPassword)
+                pom.groupId = project.group
+                pom.artifactId = project.name
+                pom.version = version
+            }
+        }
+    }
+}
