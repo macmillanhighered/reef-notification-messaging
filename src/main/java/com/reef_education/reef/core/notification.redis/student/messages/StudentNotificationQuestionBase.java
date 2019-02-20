@@ -63,6 +63,39 @@ public class StudentNotificationQuestionBase extends StudentNotificationBase
     {
     }
 
+    public StudentNotificationQuestionBase(StudentNotificationQuestionBase base)
+    {
+        this.courseId = base.courseId;
+        this.id = base.id;
+        this.sessionId = base.sessionId;
+        this.questionNumber = base.questionNumber;
+        this.questionType = base.questionType;
+        this.anonymous = base.anonymous;
+        this.correctAnswerOther = base.correctAnswerOther;
+        this.bestCorrectAnswerOther = base.bestCorrectAnswerOther;
+        this.correctAnswerOtherResponse = base.correctAnswerOtherResponse;
+        this.correctAnswerData = base.correctAnswerData;
+        this.bestCorrectAnswerResponse = base.bestCorrectAnswerResponse;
+        this.screenshotViewable = base.screenshotViewable;
+        this.resultsViewable = base.resultsViewable;
+        this.attachments = base.attachments;
+        this.hasThumbnails = base.hasThumbnails;
+        this.dateAdded = base.dateAdded;
+        this.endDate = base.endDate;
+        this.deletedDate = base.deletedDate;
+        this.answerLengthLimit = base.answerLengthLimit;
+        this.answerSignificant = base.answerSignificant;
+        this.questionAnswerBuckets = base.questionAnswerBuckets;
+        this.answerScoring = base.answerScoring;
+        this.scoreSettings = base.scoreSettings;
+        this.maxPointsPossible = base.maxPointsPossible;
+        this.instructorFeedback = base.instructorFeedback;
+        this.imageURL = base.imageURL;
+        this.thumbSmallURL = base.thumbSmallURL;
+        this.thumbLargeURL = base.thumbLargeURL;
+        this.targetData = base.targetData;
+    }
+
     public String toJson()
     {
         return JsonUtil.toJsonSafe(this, false);

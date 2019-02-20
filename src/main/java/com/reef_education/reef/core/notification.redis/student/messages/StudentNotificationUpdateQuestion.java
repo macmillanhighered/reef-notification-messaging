@@ -18,4 +18,10 @@ public class StudentNotificationUpdateQuestion extends StudentNotificationQuesti
     {
         this.action = StudentNotification.ACTION_UPDATE_QUESTION;
     }
+
+    public StudentNotificationUpdateQuestion(StudentNotificationQuestionBase base)
+    {
+        super(base);
+        this.action = StudentNotification.ACTION_UPDATE_QUESTION;
+    }
 }
