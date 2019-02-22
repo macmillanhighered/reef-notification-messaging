@@ -11,6 +11,10 @@ package com.reef_education.reef.core.notification.redis.instructor;
 public class InstructorNotification
 {
     public static final String REDIS_CHANNEL_NAME = "reef:instructor-notifications";
+    public static final String REDIS_LEGACY_CHANNEL_NAME = "reef:legacy-instructor-notifications";
+
+    public static final String ACTION_CLASS_SESSION_JOIN = "sessionJoin";
+    public static final String ACTION_CLASS_SESSION_LEAVE = "sessionLeave";
 
     private InstructorNotification()
     {
