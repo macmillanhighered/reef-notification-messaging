@@ -19,6 +19,7 @@ import java.util.UUID;
 public class StudentNotificationQuizStart extends StudentNotificationBase
 {
     private UUID courseId;
+    private String quizName;
 
     // List<QuestionResponseDataV8>
     private List<Object> questionList;
@@ -36,6 +37,16 @@ public class StudentNotificationQuizStart extends StudentNotificationBase
     public void setCourseId(UUID courseId)
     {
         this.courseId = courseId;
+    }
+
+    public String getQuizName()
+    {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName)
+    {
+        this.quizName = quizName;
     }
 
     public List<Object> getQuestionList()
