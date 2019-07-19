@@ -15,6 +15,7 @@ public class InstructorNotification
 
     public static final String ACTION_CLASS_SESSION_JOIN = "sessionJoin";
     public static final String ACTION_CLASS_SESSION_LEAVE = "sessionLeave";
+    public static final String ACTION_ROSTER_SYNC_COMPLETE = "rosterSyncComplete";
 
     private InstructorNotification()
     {
