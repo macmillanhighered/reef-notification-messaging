@@ -51,7 +51,7 @@ public final class StudentNotificationAddAttachment extends StudentNotificationB
         this.attachmentId = addAttachmentEvent.getAttachmentId();
         this.imageURL = addAttachmentEvent.getImageURL();
         this.smallImageURL = smallImageUrl;
-        this.largeImageURL = largeImageUrl
+        this.largeImageURL = largeImageUrl;
         this.courseId = courseId;
     }
 
