@@ -21,6 +21,8 @@ public final class StudentNotificationAddAttachment extends StudentNotificationB
     private UUID questionId;
     private UUID attachmentId;
     private String imageURL;
+    private String smallImageURL;
+    private String largeImageURL;
     private UUID courseId;
 
     public StudentNotificationAddAttachment()
@@ -28,7 +30,10 @@ public final class StudentNotificationAddAttachment extends StudentNotificationB
         this.action = StudentNotification.ACTION_ADD_ATTACHMENT;
     }
 
-    public StudentNotificationAddAttachment(AddAttachmentEvent addAttachmentEvent, UUID courseId)
+    public StudentNotificationAddAttachment(AddAttachmentEvent addAttachmentEvent,
+                                            UUID courseId,
+                                            String smallImageUrl,
+                                            String largeImageUrl)
     {
         this();
 
@@ -45,6 +50,8 @@ public final class StudentNotificationAddAttachment extends StudentNotificationB
         this.questionId = addAttachmentEvent.getQuestionId();
         this.attachmentId = addAttachmentEvent.getAttachmentId();
         this.imageURL = addAttachmentEvent.getImageURL();
+        this.smallImageURL = smallImageUrl;
+        this.largeImageURL = largeImageUrl
         this.courseId = courseId;
     }
 
@@ -86,5 +93,25 @@ public final class StudentNotificationAddAttachment extends StudentNotificationB
     public void setCourseId(UUID courseId)
     {
         this.courseId = courseId;
+    }
+
+    public String getSmallImageURL()
+    {
+        return smallImageURL;
+    }
+
+    public void setSmallImageURL(String smallImageURL)
+    {
+        this.smallImageURL = smallImageURL;
+    }
+
+    public String getLargeImageURL()
+    {
+        return largeImageURL;
+    }
+
+    public void setLargeImageURL(String largeImageURL)
+    {
+        this.largeImageURL = largeImageURL;
     }
 }
