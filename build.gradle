@@ -59,6 +59,7 @@ task wrapper(type: Wrapper) {
 
 dependencies {
     compile "com.reef:reef-mongo-db-spring:5.6.0+"
+    compile files('../../../iclicker-monolith/library/reef-core/build/libs/reef-core-5.6.4-SNAPSHOT.jar')
 }
 
 sourceSets {
@@ -120,13 +121,13 @@ uploadArchives {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
-                pom.version = "${version}.${artifactNum}-RELEASE"
+                pom.version = "${version}-RELEASE"
             }
             snapshotRepository(url: "${nexusContextUrl}/cloud-lib-snapshot/") {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
-                pom.version = "${version}.${artifactNum}-SNAPSHOT"
+                pom.version = "${version}-SNAPSHOT"
             }
         }
     }
