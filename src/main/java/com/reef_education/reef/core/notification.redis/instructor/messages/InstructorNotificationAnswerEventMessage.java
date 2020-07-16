@@ -1,3 +1,8 @@
+/**
+ * Copyright (C) © 2013-2020 Macmillan Learning. All Rights Reserved.
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
 package com.reef_education.reef.core.notification.redis.instructor.messages;
 
 import com.reef_education.reef.core.AnswerTypeMa;
