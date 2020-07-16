@@ -58,8 +58,12 @@ task wrapper(type: Wrapper) {
 }
 
 dependencies {
-    compile "com.reef:reef-mongo-db-spring:5.6.0+"
-    compile files('../../../iclicker-monolith/library/reef-core/build/libs/reef-core-5.6.4-SNAPSHOT.jar')
+    compile ("com.reef:reef-mongo-db-spring:5.6.0+") {
+        exclude module: "reef-core"
+    }
+    // todo what should this version be?
+    compile "com.reef:reef-core:6.0.0-SNAPSHOT"
+    //compile files('../../../iclicker-monolith/library/reef-core/build/libs/reef-core-5.6.4-SNAPSHOT.jar')
 }
 
 sourceSets {
