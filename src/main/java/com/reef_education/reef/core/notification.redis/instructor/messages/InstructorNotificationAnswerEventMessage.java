@@ -5,50 +5,30 @@
  */
 package com.reef_education.reef.core.notification.redis.instructor.messages;
 
-import com.reef_education.reef.core.AnswerTypeMa;
+import com.reef_education.reef.core.AnswerType;
 import com.reef_education.reef.core.notification.redis.instructor.InstructorNotificationBase;
 
 import java.util.UUID;
 
-/*
-
-activity = ActivityDB().get_activity_by_id(activity_id)
-activity_type = activity.get("activityType")
-
-if activity_type != "ASSIGNMENT":
-    question = QuestionDB().get_question(question_id)
-    answer_type = question.get("answerType")
-    event_body = {
-        "answerType": answer_type,
-        "questionId": str(question_id)
-    }
-
-    course_id = activity.get('courseId')
-    channel = f"""private-{course_id}"""
-    pusher_client = Pusher(PUSHER_CLIENT_KEYS)
-    pusher_client.publish_message_to_channel(channel, 'answer', event_body)
-
- */
-
 public class InstructorNotificationAnswerEventMessage extends InstructorNotificationBase
 {
-    private AnswerTypeMa answerType;
+    private AnswerType answerType;
     private UUID questionId;
     private UUID courseId;
 
-    public InstructorNotificationAnswerEventMessage(AnswerTypeMa answerType, UUID questionId, UUID courseId)
+    public InstructorNotificationAnswerEventMessage(AnswerType answerType, UUID questionId, UUID courseId)
     {
         this.answerType = answerType;
         this.questionId = questionId;
         this.courseId = courseId;
     }
 
-    public AnswerTypeMa getAnswerType()
+    public AnswerType getAnswerType()
     {
         return answerType;
     }
 
-    public void setAnswerType(AnswerTypeMa answerType)
+    public void setAnswerType(AnswerType answerType)
     {
         this.answerType = answerType;
     }

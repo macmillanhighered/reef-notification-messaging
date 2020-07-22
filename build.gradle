@@ -62,8 +62,8 @@ dependencies {
         exclude module: "reef-core"
     }
     // todo what should this version be?
-    compile "com.reef:reef-core:6.0.0-SNAPSHOT"
-    //compile files('../../../iclicker-monolith/library/reef-core/build/libs/reef-core-5.6.4-SNAPSHOT.jar')
+//    compile "com.reef:reef-core:6.0.0-SNAPSHOT"
+    compile files('../../../iclicker-monolith/library/reef-core/build/libs/reef-core-6.0.0-SNAPSHOT.jar')
 }
 
 sourceSets {
@@ -125,12 +125,14 @@ uploadArchives {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
+                //pom.version = "${version}.${artifactNum}-RELEASE"
                 pom.version = "${version}-RELEASE"
             }
             snapshotRepository(url: "${nexusContextUrl}/cloud-lib-snapshot/") {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
+                //pom.version = "${version}.${artifactNum}-SNAPSHOT"
                 pom.version = "${version}-SNAPSHOT"
             }
         }
