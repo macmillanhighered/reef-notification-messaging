@@ -123,15 +123,13 @@ uploadArchives {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
-                //pom.version = "${version}.${artifactNum}-RELEASE"
-                pom.version = "${version}-RELEASE"
+                pom.version = "${version}.${artifactNum}-RELEASE"
             }
             snapshotRepository(url: "${nexusContextUrl}/cloud-lib-snapshot/") {
                 authentication(userName: nexusUser, password: nexusPassword)
                 pom.groupId = project.group
                 pom.artifactId = project.name
-                //pom.version = "${version}.${artifactNum}-SNAPSHOT"
-                pom.version = "${version}-SNAPSHOT"
+                pom.version = "${version}.${artifactNum}-SNAPSHOT"
             }
         }
     }
