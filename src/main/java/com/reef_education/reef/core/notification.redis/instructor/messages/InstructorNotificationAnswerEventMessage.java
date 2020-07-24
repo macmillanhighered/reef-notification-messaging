@@ -16,7 +16,15 @@ public class InstructorNotificationAnswerEventMessage extends InstructorNotifica
     private UUID questionId;
     private UUID courseId;
 
-    public InstructorNotificationAnswerEventMessage(AnswerType answerType, UUID questionId, UUID courseId)
+    public InstructorNotificationAnswerEventMessage()
+    {
+    }
+
+    public InstructorNotificationAnswerEventMessage(
+            AnswerType answerType,
+            UUID questionId,
+            UUID courseId
+    )
     {
         this.answerType = answerType;
         this.questionId = questionId;
